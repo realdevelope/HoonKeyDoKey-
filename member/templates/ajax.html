@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+        <title>0909</title>	
+    </head>
+    <body>
+            {% csrf_token %}
+            <div>            
+                <input type="text" id="userid" placeholder="아이디를 입력하세요">
+                <input type="text" id="password" placeholder="비밀번호를 입력하세요">
+                <button type="button" onclick="ajax();">전송</button>
+            </div>
+            <div id="my_div" action="ajax_test" method="post" style="color:purple;"></div>
+        
+
+        <script>
+            function ajax() {
+                
+                $.post(
+                    "ajax_test",
+                    {userid:$("#userid").val(),
+                    password:$("#password").val(),
+                    csrfmiddlewaretoken : document.getElementsByName("csrfmiddlewaretoken")[0].value},
+                    function(hello){
+                        //alert(hello)
+                        $("#my_div").html( hello );
+                    }                                        
+                )
+            }                
+            
+        </script>
+    </body>
+</html>

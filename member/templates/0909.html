@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+        <title>0909</title>	
+    </head>
+    <body>
+    {% csrf_token %}
+        <form>
+            <input type="text" id="id">
+            <input type="text" id="pw">
+
+            <button type="button" onclick="ajax();">전송</button>
+            <div id="my_dic"></div>
+        </form>
+
+
+    <script>
+        function ajax() {
+            $.post( 
+                "ajax_test", 
+                { id_: $("#id").val(), pw_: $("#pw").val(), 
+                csrfmiddlewaretoken : 'awi96tTYl0GywWc9aBraDjIc0eQBLBERBpUkMWx0Ep7cevJolNnqFQqbLcWcVO0E'},
+                function ( hello ) {
+                    $("#my_div").html( hello );
+                }
+            )
+    }
+    </script>
+    </body>
+</html>

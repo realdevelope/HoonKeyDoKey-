@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+        <title>registeredPage</title>	
+    </head>
+    <body>
+        {% csrf_token %}
+        <h1> 회원가입에 성공하셨습니다.</h1>
+        <h1>회원가입 정보는 아래와 같습니다.</h1>
+            아이디 : {{ userid }}<br>
+            이름 : {{ username }}<br>
+            비밀번호 :{{ password }}<br>
+
+        <a href="http://49.50.160.72:8000/dontgiveup/login">로그인 페이지로 이동</a>
+    </body>	
+</html>  

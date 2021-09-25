@@ -1,0 +1,1635 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>mainPage</title>
+        {% load static %}
+        
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
+        <link rel="shortcut icon" href= "{% static '../static/images/favicon.ico' %}">
+        <!-- Bootstrap icons-->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="../static/css/styles.css" rel="stylesheet"/>
+        <!--randomPassword-->
+        <script src="../static/js/random.js"></script>
+    </head>
+    <body>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+            <div class="container px-4 px-lg-5">
+                <a class="navbar-brand" href="#">훈키도키</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
+                        <form action="my_page_test" method="post">
+                            {% csrf_token %}
+                            <button class="nav-item" type="submit" style="cursor:pointer; border:0; outline:0; background-color: #FAFAFA;">MyPage</li>
+                        </form>
+                    </ul>
+                    <ul class="nav nav-pills">
+                        <li class="nav-item">
+                            <a class="nav-link" href="#검색" style="color:black !important;">검색</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#SNS" style="color:black !important;">SNS</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#BLOG" style="color:black !important;">BLOG</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#CONTACT" style="color:black !important;">CONTACT</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <div data-spy="scroll" data-target="#navbar-example2" data-offset="0">
+            <h4 id="검색">검색</h4>
+            <p>
+                
+                <!-- Header-->
+                <header class="bg-dark py-5">
+                    <div class="container px-4 px-lg-5 my-5">
+                        <div class="text-center text-white">
+                            <h1 class="display-4 fw-bolder">ID만 기억하세요 </h1>
+                            <h1 class="display-4 fw-bolder">PW는 우리가 기억할께요</h1>
+                            <p class="lead fw-normal text-white-50 mb-0">스트레스 받는 PW찾기는 그만하시고 일에 몰두하세요</p>
+                        </div>
+                    </div>
+                </header>
+
+                <div id="gogoLog"> 
+                    <!-- Section-->
+                    <section class="py-5">
+                        <div class="container px-4 px-lg-5 mt-5">
+                            <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+                                <div class="col mb-5">
+                                    <div class="card h-60">
+                                        <!-- Product image-->
+                                        {% load static %}
+                                        <img class="card-img-top" src= "{% static '../static/images/gogle.jpg' %}" alt="..." />
+                                        <!-- Product details-->
+                                        <div class="card-body p-4">
+                                            <div class="text-center">
+                                                <!-- Product name-->
+                                                <h5 class="fw-bolder">구글 <br>(Google)</h5>
+                                            </div>
+                                        </div>
+                                        <!-- Product actions-->
+                                        <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                                            <div class="text-center">
+                                                <!-- Button trigger modal -->
+                                                <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#exampleModal">
+                                                    비밀번호 등록 하기
+                                                </button>
+                                                <!-- Modal1 -->
+                                                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                    <div class="modal-dialog modal-dialog-centered">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title" id="exampleModal">구글 (Google)</h5>
+                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                    <span aria-hidden="true">&times;</span>
+                                                                </button>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                <div class="card card-body">
+                                                                    <input type="text" id="userPassword" class="form-control" placeholder="저장할 비밀번호를 입력하세요" style="margin-bottom:10px";> 
+                                                                    <button type="button" onclick="applyPassword();" class="btn btn-primary btn btn-dark btn-lg" size="lg" data-dismiss="modal">
+                                                                    등록하기
+                                                                    </button>
+                                                                </div>
+
+                                                                <div class="card card-body" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample"">
+                                                                        <div id="showGoogle" action="password_init" method="POST"></div>
+                                                                        <button type="submit" onclick="randomPassword();" class="btn btn-dark btn btn-secondary btn-lg" size="lg">
+                                                                        생성하기
+                                                                        </button>
+                                                                </div>
+                                                                    
+                                                                    {% csrf_token %}
+                                                                    <div class="collapse" id="collapseExample">
+                                                                        <div class="card card-body" style="width:450px;">
+                                                                            <script>document.write(randomPassword());</script>
+                                                                        </div>
+                                                                    </div>
+
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <!-- <button type="button" class="btn btn-primary" data-dismiss="modal">Save</button> -->
+                                                                <button type="button" class="btn btn-dark" data-dismiss="modal">Close</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col mb-5">
+                                    <div class="card h-60">                                        
+                                        <!-- Product image-->
+                                        {% load static %}
+                                        <img class="card-img-top" src= "{% static '../static/images/naver.png' %}" alt="..." />
+                                        <!-- Product details-->
+                                        <div class="card-body p-4">
+                                            <div class="text-center">
+                                                <!-- Product name-->
+                                                <h5 class="fw-bolder">네이버<br>(Naver)</h5>
+                                            </div>
+                                        </div>
+                                        <!-- Product actions-->
+                                        <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                                            <div class="text-center">
+                                                <!-- Button trigger modal -->
+                                                <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#exampleModal_2">
+                                                    비밀번호 등록 하기
+                                                </button>
+                                                
+                                                <!-- Modal -->
+                                                <div class="modal fade" id="exampleModal_2" tabindex="-1" aria-labelledby="exampleModalLabel_2" aria-hidden="true">
+                                                    <div class="modal-dialog modal-dialog-centered">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title" id="exampleModal_2">네이버 (Naver)</h5>
+                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                    <span aria-hidden="true">&times;</span>
+                                                                </button>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                <div class="card card-body">
+                                                                    <input type="text" id="" class="form-control" name="" placeholder="저장할 비밀번호를 입력하세요" style="margin-bottom:10px";> 
+                                                                    <button type="submit" class="btn btn-dark btn btn-secondary btn-lg" size="lg">
+                                                                    등록하기
+                                                                    </button> 
+                                                                </div>
+                                                                <div class="card card-body">
+                                                                        <input type="text" id="" class="form-control" name=""  style="margin-bottom:10px";> 
+                                                                        <button type="submit" class="btn btn-dark btn btn-secondary btn-lg" size="lg">
+                                                                        생성하기
+                                                                        </button>
+                                                                </div>    
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-dark">Save</button>
+                                                                <button type="button" class="btn btn-dark" data-dismiss="modal">Close</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col mb-5">
+                                    <div class="card h-60">
+                                        <!-- Product image-->
+                                        {% load static %}
+                                        <img class="card-img-top" src= "{% static '../static/images/kakao.png' %}" alt="..." />
+                                        <!-- Product details-->
+                                        <div class="card-body p-4">
+                                            <div class="text-center">
+                                                <!-- Product name-->
+                                                <h5 class="fw-bolder">카카오<br>(Kakao)</h5>                                            
+                                            </div>
+                                        </div>
+                                        <!-- Product actions-->
+                                        <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                                            <div class="text-center">
+                                                <!-- Button trigger modal -->
+                                                <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#exampleModal_3">
+                                                    비밀번호 등록 하기
+                                                </button>
+                                                
+                                                <!-- Modal -->
+                                                <div class="modal fade" id="exampleModal_3" tabindex="-1" aria-labelledby="exampleModalLabel_3" aria-hidden="true">
+                                                    <div class="modal-dialog modal-dialog-centered">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title" id="exampleModal_3">카카오 (Kakao)</h5>
+                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                    <span aria-hidden="true">&times;</span>
+                                                                </button>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                <div class="modal-body">
+                                                                    <div class="card card-body">
+                                                                        <input type="text" id="" class="form-control" name="" placeholder="저장할 비밀번호를 입력하세요" style="margin-bottom:10px";> 
+                                                                        <button type="submit" class="btn btn-primary btn btn-secondary btn-lg" size="lg">
+                                                                        등록하기
+                                                                        </button> 
+                                                                    </div>
+                                                                    <div class="card card-body">
+                                                                            <input type="text" id="" class="form-control" name=""  style="margin-bottom:10px";> 
+                                                                            <button type="submit" class="btn btn-primary btn btn-secondary btn-lg" size="lg">
+                                                                            생성하기
+                                                                            </button>
+                                                                    </div>    
+                                                                </div>
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-primary">Save</button>
+                                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col mb-5">
+                                    <div class="card h-60">
+                                        <!-- Product image-->
+                                        {% load static %}
+                                        <img class="card-img-top" src= "{% static '../static/images/daum.png' %}" alt="..." />
+                                        <!-- Product details-->
+                                        <div class="card-body p-4">
+                                            <div class="text-center">
+                                                <!-- Product name-->
+                                                <h5 class="fw-bolder">다음<br>(Daum)</h5>                                       
+                                            </div>
+                                        </div>
+                                        <!-- Product actions-->
+                                        <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                                            <div class="text-center">
+                                                <!-- Button trigger modal -->
+                                                <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#exampleModal_4">
+                                                    비밀번호 등록 하기
+                                                </button>
+                                                
+                                                <!-- Modal -->
+                                                <div class="modal fade" id="exampleModal_4" tabindex="-1" aria-labelledby="exampleModalLabel_4" aria-hidden="true">
+                                                    <div class="modal-dialog modal-dialog-centered">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title" id="exampleModal_4">다음 (Daum)</h5>
+                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                    <span aria-hidden="true">&times;</span>
+                                                                </button>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                <div class="modal-body">
+                                                                    <div class="card card-body">
+                                                                        <input type="text" id="exampleModal_4" class="form-control" name="" placeholder="저장할 비밀번호를 입력하세요" style="margin-bottom:10px";> 
+                                                                        <button type="submit" class="btn btn-primary btn btn-secondary btn-lg" size="lg">
+                                                                        등록하기
+                                                                        </button> 
+                                                                    </div>
+                                                                    <div class="card card-body">
+                                                                            <input type="text" id="" class="form-control" name=""  style="margin-bottom:10px";> 
+                                                                            <button type="submit" class="btn btn-primary btn btn-secondary btn-lg" size="lg">
+                                                                            생성하기
+                                                                            </button>
+                                                                    </div>    
+                                                                </div>
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-primary">Save</button>
+                                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col mb-5">
+                                    <div class="card h-60">
+                                        <!-- Product image-->
+                                        {% load static %}
+                                        <img class="card-img-top" src= "{% static '../static/images/nate.png' %}" alt="..." />
+                                        <!-- Product details-->
+                                        <div class="card-body p-4">
+                                            <div class="text-center">
+                                                <!-- Product name-->
+                                                <h5 class="fw-bolder">네이트<br>(Nate)</h5>
+                                            </div>
+                                        </div>
+                                        <!-- Product actions-->
+                                        <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                                            <div class="text-center">
+                                                <!-- Button trigger modal -->
+                                                <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#exampleModal_5">
+                                                    비밀번호 등록 하기
+                                                </button>
+                                                
+                                                <!-- Modal -->
+                                                <div class="modal fade" id="exampleModal_5" tabindex="-1" aria-labelledby="exampleModalLabel_5" aria-hidden="true">
+                                                    <div class="modal-dialog modal-dialog-centered">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title" id="exampleModal_5">네이트 (Nate)</h5>
+                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                    <span aria-hidden="true">&times;</span>
+                                                                </button>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                <div class="modal-body">
+                                                                    <div class="card card-body">
+                                                                        <input type="text" id="exampleModal_5" class="form-control" name="" placeholder="저장할 비밀번호를 입력하세요" style="margin-bottom:10px";> 
+                                                                        <button type="submit" class="btn btn-primary btn btn-secondary btn-lg" size="lg">
+                                                                        등록하기
+                                                                        </button> 
+                                                                    </div>
+                                                                    <div class="card card-body">
+                                                                            <input type="text" id="" class="form-control" name=""  style="margin-bottom:10px";> 
+                                                                            <button type="submit" class="btn btn-primary btn btn-secondary btn-lg" size="lg">
+                                                                            생성하기
+                                                                            </button>
+                                                                    </div>    
+                                                                </div>
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-primary">Save</button>
+                                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col mb-5">
+                                    <div class="card h-60">
+                                        <!-- Product image-->
+                                        {% load static %}
+                                        <img class="card-img-top" src= "{% static '../static/images/zum.png' %}" alt="..." />
+                                        <!-- Product details-->
+                                        <div class="card-body p-4">
+                                            <div class="text-center">
+                                                <!-- Product name-->
+                                                <h5 class="fw-bolder">줌<br>(Zum)</h5>
+                                            </div>
+                                        </div>
+                                        <!-- Product actions-->
+                                        <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                                            <div class="text-center">
+                                                <!-- Button trigger modal -->
+                                                <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#exampleModal_6">
+                                                    비밀번호 등록 하기
+                                                </button>
+                                                
+                                                <!-- Modal -->
+                                                <div class="modal fade" id="exampleModal_6" tabindex="-1" aria-labelledby="exampleModalLabel_6" aria-hidden="true">
+                                                    <div class="modal-dialog modal-dialog-centered">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title" id="exampleModal_6">줌 (Zum)</h5>
+                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                    <span aria-hidden="true">&times;</span>
+                                                                </button>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                <div class="modal-body">
+                                                                    <div class="card card-body">
+                                                                        <input type="text" id="" class="form-control" name="" placeholder="저장할 비밀번호를 입력하세요" style="margin-bottom:10px";> 
+                                                                        <button type="submit" class="btn btn-primary btn btn-secondary btn-lg" size="lg">
+                                                                        등록하기
+                                                                        </button> 
+                                                                    </div>
+                                                                    <div class="card card-body">
+                                                                            <input type="text" id="" class="form-control" name=""  style="margin-bottom:10px";> 
+                                                                            <button type="submit" class="btn btn-primary btn btn-secondary btn-lg" size="lg">
+                                                                            생성하기
+                                                                            </button>
+                                                                    </div>    
+                                                                </div>
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-primary">Save</button>
+                                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col mb-5">
+                                    <div class="card h-60">
+                                        <!-- Product image-->
+                                        {% load static %}
+                                        <img class="card-img-top" src= "{% static '../static/images/yahoo.png' %}" alt="..." />
+                                        <!-- Product details-->
+                                        <div class="card-body p-4">
+                                            <div class="text-center">
+                                                <!-- Product name-->
+                                                <h5 class="fw-bolder">야후<br>(Yahoo)</h5>
+                                            </div>
+                                        </div>
+                                        <!-- Product actions-->
+                                        <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                                            <div class="text-center">
+                                                <!-- Button trigger modal -->
+                                                <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#exampleModal_7">
+                                                    비밀번호 등록 하기
+                                                </button>
+                                                
+                                                <!-- Modal -->
+                                                <div class="modal fade" id="exampleModal_7" tabindex="-1" aria-labelledby="exampleModalLabel_7" aria-hidden="true">
+                                                    <div class="modal-dialog modal-dialog-centered">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title" id="exampleModal_7">야후 (Yahoo)</h5>
+                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                    <span aria-hidden="true">&times;</span>
+                                                                </button>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                <div class="modal-body">
+                                                                    <div class="card card-body">
+                                                                        <input type="text" id="" class="form-control" name="" placeholder="저장할 비밀번호를 입력하세요" style="margin-bottom:10px";> 
+                                                                        <button type="submit" class="btn btn-primary btn btn-secondary btn-lg" size="lg">
+                                                                        등록하기
+                                                                        </button> 
+                                                                    </div>
+                                                                    <div class="card card-body">
+                                                                            <input type="text" id="" class="form-control" name=""  style="margin-bottom:10px";> 
+                                                                            <button type="submit" class="btn btn-primary btn btn-secondary btn-lg" size="lg">
+                                                                            생성하기
+                                                                            </button>
+                                                                    </div>    
+                                                                </div>
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-primary">Save</button>
+                                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col mb-5">
+                                    <div class="card h-60">
+                                        <!-- Product image-->
+                                        {% load static %}
+                                        <img class="card-img-top" src= "{% static '../static/images/bing.png' %}" alt="..." />
+                                        <!-- Product details-->
+                                        <div class="card-body p-4">
+                                            <div class="text-center">
+                                                <!-- Product name-->
+                                                <h5 class="fw-bolder">빙<br>(Bing)</h5>
+                                            </div>
+                                        </div>
+                                        <!-- Product actions-->
+                                        <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                                            <div class="text-center">
+                                                <!-- Button trigger modal -->
+                                                <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#exampleModal_8">
+                                                    비밀번호 등록 하기
+                                                </button>
+                                                
+                                                <!-- Modal -->
+                                                <div class="modal fade" id="exampleModal_8" tabindex="-1" aria-labelledby="exampleModalLabel_8" aria-hidden="true">
+                                                    <div class="modal-dialog modal-dialog-centered">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title" id="exampleModal_8">빙 (Bing)</h5>
+                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                    <span aria-hidden="true">&times;</span>
+                                                                </button>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                <div class="modal-body">
+                                                                    <div class="card card-body">
+                                                                        <input type="text" id="" class="form-control" name="" placeholder="저장할 비밀번호를 입력하세요" style="margin-bottom:10px";> 
+                                                                        <button type="submit" class="btn btn-primary btn btn-secondary btn-lg" size="lg">
+                                                                        등록하기
+                                                                        </button> 
+                                                                    </div>
+                                                                    <div class="card card-body">
+                                                                            <input type="text" id="" class="form-control" name=""  style="margin-bottom:10px";> 
+                                                                            <button type="submit" class="btn btn-primary btn btn-secondary btn-lg" size="lg">
+                                                                            생성하기
+                                                                            </button>
+                                                                    </div>    
+                                                                </div>
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-primary">Save</button>
+                                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </p>
+            <h4 id="SNS" style="color:#FAFAFA;">SNS</h4>
+            <p>
+                <div class="bg-dark py-5">
+                    <div class="container px-4 px-lg-5 my-5">
+                        <div class="text-center text-white">
+                            <h1 class="display-4 fw-bolder">훈키도키만의 강력한 보안기술로 </h1>
+                            <p class="lead fw-normal text-white-50 mb-0">여러분들의 소중한 PW를 지켜드립니다.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="gogoLog"> 
+                    <!-- Section-->
+                    <section class="py-5">
+                        <div class="container px-4 px-lg-5 mt-5">
+                            <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+                                <div class="col mb-5">
+                                    <div class="card h-60">
+                                        <!-- Product image-->
+                                        {% load static %}
+                                        <img class="card-img-top" src= "{% static '../static/images/youtube.png' %}" alt="..." />
+                                        <!-- Product details-->
+                                        <div class="card-body p-4">
+                                            <div class="text-center">
+                                                <!-- Product name-->
+                                                <h5 class="fw-bolder">유튜브<br>(Youtube)</h5>                                                
+                                            </div>
+                                        </div>
+                                        <!-- Product actions-->
+                                        <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                                            <div class="text-center">
+                                                <!-- Button trigger modal -->
+                                                <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#exampleModal_9">
+                                                    비밀번호 등록 하기
+                                                </button>
+                                                
+                                                <!-- Modal -->
+                                                <div class="modal fade" id="exampleModal_9" tabindex="-1" aria-labelledby="exampleModalLabel_9" aria-hidden="true">
+                                                    <div class="modal-dialog modal-dialog-centered">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title" id="exampleModal_9">유튜브 (Youtube)</h5>
+                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                    <span aria-hidden="true">&times;</span>
+                                                                </button>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                <div class="modal-body">
+                                                                    <div class="card card-body">
+                                                                        <input type="text" id="" class="form-control" name="" placeholder="저장할 비밀번호를 입력하세요" style="margin-bottom:10px";> 
+                                                                        <button type="submit" class="btn btn-primary btn btn-secondary btn-lg" size="lg">
+                                                                        등록하기
+                                                                        </button> 
+                                                                    </div>
+                                                                    <div class="card card-body">
+                                                                            <input type="text" id="" class="form-control" name=""  style="margin-bottom:10px";> 
+                                                                            <button type="submit" class="btn btn-primary btn btn-secondary btn-lg" size="lg">
+                                                                            생성하기
+                                                                            </button>
+                                                                    </div>    
+                                                                </div>
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-primary">Save</button>
+                                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col mb-5">
+                                    <div class="card h-60">
+                                        <!-- Product image-->
+                                        {% load static %}
+                                        <img class="card-img-top" src= "{% static '../static/images/facebook.jpg' %}" alt="..." />
+                                        <!-- Product details-->
+                                        <div class="card-body p-4">
+                                            <div class="text-center">
+                                                <!-- Product name-->
+                                                <h5 class="fw-bolder">페이스북<br>(Facebook)</h5>
+                                            </div>
+                                        </div>
+                                        <!-- Product actions-->
+                                        <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                                            <div class="text-center">
+                                                <!-- Button trigger modal -->
+                                                <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#exampleModal_10">
+                                                    비밀번호 등록 하기
+                                                </button>
+                                                
+                                                <!-- Modal -->
+                                                <div class="modal fade" id="exampleModal_10" tabindex="-1" aria-labelledby="exampleModalLabel_10" aria-hidden="true">
+                                                    <div class="modal-dialog modal-dialog-centered">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title" id="exampleModal_10">페이스북 (Facebook)</h5>
+                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                    <span aria-hidden="true">&times;</span>
+                                                                </button>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                <div class="modal-body">
+                                                                    <div class="card card-body">
+                                                                        <input type="text" id="" class="form-control" name="" placeholder="저장할 비밀번호를 입력하세요" style="margin-bottom:10px";> 
+                                                                        <button type="submit" class="btn btn-primary btn btn-secondary btn-lg" size="lg">
+                                                                        등록하기
+                                                                        </button> 
+                                                                    </div>
+                                                                    <div class="card card-body">
+                                                                            <input type="text" id="" class="form-control" name=""  style="margin-bottom:10px";> 
+                                                                            <button type="submit" class="btn btn-primary btn btn-secondary btn-lg" size="lg">
+                                                                            생성하기
+                                                                            </button>
+                                                                    </div>    
+                                                                </div>
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-primary">Save</button>
+                                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col mb-5">
+                                    <div class="card h-60">
+                                        <!-- Product image-->
+                                        {% load static %}
+                                        <img class="card-img-top" src= "{% static '../static/images/insta.jpg' %}" alt="..." />
+                                        <!-- Product details-->
+                                        <div class="card-body p-4">
+                                            <div class="text-center">
+                                                <!-- Product name-->
+                                                <h5 class="fw-bolder">인스타그램<br>(Instagram)</h5>
+                                            </div>
+                                        </div>
+                                        <!-- Product actions-->
+                                        <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                                            <div class="text-center">
+                                                <!-- Button trigger modal -->
+                                                <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#exampleModal_11">
+                                                    비밀번호 등록 하기
+                                                </button>
+                                                
+                                                <!-- Modal -->
+                                                <div class="modal fade" id="exampleModal_11" tabindex="-1" aria-labelledby="exampleModalLabel_11" aria-hidden="true">
+                                                    <div class="modal-dialog modal-dialog-centered">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title" id="exampleModal_11">인스타그램 (Instergram)</h5>
+                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                    <span aria-hidden="true">&times;</span>
+                                                                </button>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                <div class="modal-body">
+                                                                    <div class="card card-body">
+                                                                        <input type="text" id="" class="form-control" name="" placeholder="저장할 비밀번호를 입력하세요" style="margin-bottom:10px";> 
+                                                                        <button type="submit" class="btn btn-primary btn btn-secondary btn-lg" size="lg">
+                                                                        등록하기
+                                                                        </button> 
+                                                                    </div>
+                                                                    <div class="card card-body">
+                                                                            <input type="text" id="" class="form-control" name=""  style="margin-bottom:10px";> 
+                                                                            <button type="submit" class="btn btn-primary btn btn-secondary btn-lg" size="lg">
+                                                                            생성하기
+                                                                            </button>
+                                                                    </div>    
+                                                                </div>
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-primary">Save</button>
+                                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col mb-5">
+                                    <div class="card h-60">
+                                        <!-- Product image-->
+                                        {% load static %}
+                                        <img class="card-img-top" src= "{% static '../static/images/twitter.png' %}" alt="..." />
+                                        <!-- Product details-->
+                                        <div class="card-body p-4">
+                                            <div class="text-center">
+                                                <!-- Product name-->
+                                                <h5 class="fw-bolder">트위터<br>(Twitter)</h5>
+                                            </div>
+                                        </div>
+                                        <!-- Product actions-->
+                                        <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                                            <div class="text-center">
+                                                <!-- Button trigger modal -->
+                                                <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#exampleModal_12">
+                                                    비밀번호 등록 하기
+                                                </button>
+                                                
+                                                <!-- Modal -->
+                                                <div class="modal fade" id="exampleModal_12" tabindex="-1" aria-labelledby="exampleModalLabel_12" aria-hidden="true">
+                                                    <div class="modal-dialog modal-dialog-centered">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title" id="exampleModal_12">트위터 (Twitter)</h5>
+                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                    <span aria-hidden="true">&times;</span>
+                                                                </button>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                <div class="modal-body">
+                                                                    <div class="card card-body">
+                                                                        <input type="text" id="" class="form-control" name="" placeholder="저장할 비밀번호를 입력하세요" style="margin-bottom:10px";> 
+                                                                        <button type="submit" class="btn btn-primary btn btn-secondary btn-lg" size="lg">
+                                                                        등록하기
+                                                                        </button> 
+                                                                    </div>
+                                                                    <div class="card card-body">
+                                                                            <input type="text" id="" class="form-control" name=""  style="margin-bottom:10px";> 
+                                                                            <button type="submit" class="btn btn-primary btn btn-secondary btn-lg" size="lg">
+                                                                            생성하기
+                                                                            </button>
+                                                                    </div>    
+                                                                </div>
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-primary">Save</button>
+                                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col mb-5">
+                                    <div class="card h-60">
+                                        <!-- Product image-->
+                                        {% load static %}
+                                        <img class="card-img-top" src= "{% static '../static/images/kakaostory.png' %}" alt="..." />
+                                        <!-- Product details-->
+                                        <div class="card-body p-4">
+                                            <div class="text-center">
+                                                <!-- Product name-->
+                                                <h5 class="fw-bolder">카카오스토리<br>(kakaostory)</h5>
+                                            </div>
+                                        </div>
+                                        <!-- Product actions-->
+                                        <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                                            <div class="text-center">
+                                                <!-- Button trigger modal -->
+                                                <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#exampleModal_13">
+                                                    비밀번호 등록 하기
+                                                </button>
+                                                
+                                                <!-- Modal -->
+                                                <div class="modal fade" id="exampleModal_13" tabindex="-1" aria-labelledby="exampleModalLabel_13" aria-hidden="true">
+                                                    <div class="modal-dialog modal-dialog-centered">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title" id="exampleModal_13">카카오스토리 (kakaostory)</h5>
+                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                    <span aria-hidden="true">&times;</span>
+                                                                </button>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                <div class="modal-body">
+                                                                    <div class="modal-body">
+                                                                        <div class="card card-body">
+                                                                            <input type="text" id="exampleModal_13" class="form-control" name="" placeholder="저장할 비밀번호를 입력하세요" style="margin-bottom:10px";> 
+                                                                            <button type="submit" class="btn btn-primary btn btn-secondary btn-lg" size="lg">
+                                                                            등록하기
+                                                                            </button> 
+                                                                        </div>
+                                                                        <div class="card card-body">
+                                                                                <input type="text" id="" class="form-control" name=""  style="margin-bottom:10px";> 
+                                                                                <button type="submit" class="btn btn-primary btn btn-secondary btn-lg" size="lg">
+                                                                                생성하기
+                                                                                </button>
+                                                                        </div>    
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-primary">Save</button>
+                                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col mb-5">
+                                    <div class="card h-60">
+                                        <!-- Product image-->
+                                        {% load static %}
+                                        <img class="card-img-top" src= "{% static '../static/images/line.png' %}" alt="..." />
+                                        <!-- Product details-->
+                                        <div class="card-body p-4">
+                                            <div class="text-center">
+                                                <!-- Product name-->
+                                                <h5 class="fw-bolder">라인<br>(Line)</h5>
+                                            </div>
+                                        </div>
+                                        <!-- Product actions-->
+                                        <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                                            <div class="text-center">
+                                                <!-- Button trigger modal -->
+                                                <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#exampleModal_14">
+                                                    비밀번호 등록 하기
+                                                </button>
+                                                
+                                                <!-- Modal -->
+                                                <div class="modal fade" id="exampleModal_14" tabindex="-1" aria-labelledby="exampleModalLabel_14" aria-hidden="true">
+                                                    <div class="modal-dialog modal-dialog-centered">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title" id="exampleModalLabel_14">라인 (Line)</h5>
+                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                    <span aria-hidden="true">&times;</span>
+                                                                </button>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                <div class="modal-body">
+                                                                    <div class="modal-body">
+                                                                        <div class="modal-body">
+                                                                            <div class="card card-body">
+                                                                                <input type="text" id="exampleModal_13" class="form-control" name="" placeholder="저장할 비밀번호를 입력하세요" style="margin-bottom:10px";> 
+                                                                                <button type="submit" class="btn btn-primary btn btn-secondary btn-lg" size="lg">
+                                                                                등록하기
+                                                                                </button> 
+                                                                            </div>
+                                                                            <div class="card card-body">
+                                                                                    <input type="text" id="" class="form-control" name=""  style="margin-bottom:10px";> 
+                                                                                    <button type="submit" class="btn btn-primary btn btn-secondary btn-lg" size="lg">
+                                                                                    생성하기
+                                                                                    </button>
+                                                                            </div>    
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-primary">Save</button>
+                                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col mb-5">
+                                    <div class="card h-60">
+                                        <!-- Product image-->
+                                        {% load static %}
+                                        <img class="card-img-top" src= "{% static '../static/images/tiktok.png' %}" alt="..." />
+                                        <!-- Product details-->
+                                        <div class="card-body p-4">
+                                            <div class="text-center">
+                                                <!-- Product name-->
+                                                <h5 class="fw-bolder">틱톡<br>(Tiktoc)</h5>
+                                            </div>
+                                        </div>
+                                        <!-- Product actions-->
+                                        <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                                            <div class="text-center">
+                                                <!-- Button trigger modal -->
+                                                <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#exampleModal_15">
+                                                    비밀번호 등록 하기
+                                                </button>
+                                                
+                                                <!-- Modal -->
+                                                <div class="modal fade" id="exampleModal_15" tabindex="-1" aria-labelledby="exampleModalLabel_15" aria-hidden="true">
+                                                    <div class="modal-dialog modal-dialog-centered">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title" id="exampleModalLabel_15">틱톡 Tiktoc</h5>
+                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                    <span aria-hidden="true">&times;</span>
+                                                                </button>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                <div class="modal-body">
+                                                                    <div class="modal-body">
+                                                                        <div class="modal-body">
+                                                                            <div class="card card-body">
+                                                                                <input type="text" id="exampleModal_13" class="form-control" name="" placeholder="저장할 비밀번호를 입력하세요" style="margin-bottom:10px";> 
+                                                                                <button type="submit" class="btn btn-primary btn btn-secondary btn-lg" size="lg">
+                                                                                등록하기
+                                                                                </button> 
+                                                                            </div>
+                                                                            <div class="card card-body">
+                                                                                    <input type="text" id="" class="form-control" name=""  style="margin-bottom:10px";> 
+                                                                                    <button type="submit" class="btn btn-primary btn btn-secondary btn-lg" size="lg">
+                                                                                    생성하기
+                                                                                    </button>
+                                                                            </div>    
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-primary">Save</button>
+                                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col mb-5">
+                                    <div class="card h-60">
+                                        <!-- Product image-->
+                                        {% load static %}
+                                        <img class="card-img-top" src= "{% static '../static/images/cyworld.png' %}" alt="..." />
+                                        <!-- Product details-->
+                                        <div class="card-body p-4">
+                                            <div class="text-center">
+                                                <!-- Product name-->
+                                                <h5 class="fw-bolder">싸이월드<br>(CYWORLD)</h5>
+                                            </div>
+                                        </div>
+                                        <!-- Product actions-->
+                                        <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                                            <div class="text-center">
+                                                <!-- Button trigger modal -->
+                                                <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#exampleModal_16">
+                                                    비밀번호 등록 하기
+                                                </button>
+                                                
+                                                <!-- Modal -->
+                                                <div class="modal fade" id="exampleModal_16" tabindex="-1" aria-labelledby="exampleModalLabel_16" aria-hidden="true">
+                                                    <div class="modal-dialog modal-dialog-centered">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title" id="exampleModalLabel_16">싸이월드 (Cyworld)</h5>
+                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                    <span aria-hidden="true">&times;</span>
+                                                                </button>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                <div class="modal-body">
+                                                                    <div class="modal-body">
+                                                                        <div class="modal-body">
+                                                                            <div class="card card-body">
+                                                                                <input type="text" id="exampleModal_13" class="form-control" name="" placeholder="저장할 비밀번호를 입력하세요" style="margin-bottom:10px";> 
+                                                                                <button type="submit" class="btn btn-primary btn btn-secondary btn-lg" size="lg">
+                                                                                등록하기
+                                                                                </button> 
+                                                                            </div>
+                                                                            <div class="card card-body">
+                                                                                    <input type="text" id="" class="form-control" name=""  style="margin-bottom:10px";> 
+                                                                                    <button type="submit" class="btn btn-primary btn btn-secondary btn-lg" size="lg">
+                                                                                    생성하기
+                                                                                    </button>
+                                                                            </div>    
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-primary">Save</button>
+                                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </p>
+            <h4 id="BLOG" style="color:#FAFAFA;">BLOG</h4>
+            <p>
+                <div class="bg-dark py-5">
+                    <div class="container px-4 px-lg-5 my-5">
+                        <div class="text-center text-white">
+                            <h1 class="display-4 fw-bolder">폴리매스 : 한계를 거부하는 다재 다능한 사람</h1>
+                            <p class="lead fw-normal text-white-50 mb-0">폴리매스는 훈키도키를 사용합니다</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="gogoLog"> 
+                    <!-- Section-->
+                    <section class="py-5">
+                        <div class="container px-4 px-lg-5 mt-5">
+                            <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+                                <div class="col mb-5">
+                                    <div class="card h-100">
+                                        <!-- Product image-->
+                                        {% load static %}
+                                        <img class="card-img-top" src= "{% static '../static/images/github.png' %}" alt="..." />
+                                        <!-- Product details-->
+                                        <div class="card-body p-4">
+                                            <div class="text-center">
+                                                <!-- Product name-->
+                                                <h5 class="fw-bolder">깃허브<br>(Github)</h5>
+                                            </div>
+                                        </div>
+                                        <!-- Product actions-->
+                                        <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                                            <div class="text-center">
+                                                <!-- Button trigger modal -->
+                                                <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#exampleModal_17">
+                                                    비밀번호 등록 하기
+                                                </button>
+                                                
+                                                <!-- Modal -->
+                                                <div class="modal fade" id="exampleModal_17" tabindex="-1" aria-labelledby="exampleModalLabel_17" aria-hidden="true">
+                                                    <div class="modal-dialog modal-dialog-centered">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title" id="exampleModalLabel_17">깃허브 (Github)</h5>
+                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                    <span aria-hidden="true">&times;</span>
+                                                                </button>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                <div class="modal-body">
+                                                                    <div class="modal-body">
+                                                                        <div class="modal-body">
+                                                                            <div class="card card-body">
+                                                                                <input type="text" id="exampleModal_13" class="form-control" name="" placeholder="저장할 비밀번호를 입력하세요" style="margin-bottom:10px";> 
+                                                                                <button type="submit" class="btn btn-primary btn btn-secondary btn-lg" size="lg">
+                                                                                등록하기
+                                                                                </button> 
+                                                                            </div>
+                                                                            <div class="card card-body">
+                                                                                    <input type="text" id="" class="form-control" name=""  style="margin-bottom:10px";> 
+                                                                                    <button type="submit" class="btn btn-primary btn btn-secondary btn-lg" size="lg">
+                                                                                    생성하기
+                                                                                    </button>
+                                                                            </div>    
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-primary">Save</button>
+                                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col mb-5">
+                                    <div class="card h-60">
+                                        <!-- Product image-->
+                                        {% load static %}
+                                        <img class="card-img-top" src= "{% static '../static/images/notion.jpg' %}" alt="..." />
+                                        <!-- Product details-->
+                                        <div class="card-body p-4">
+                                            <div class="text-center">
+                                                <!-- Product name-->
+                                                <h5 class="fw-bolder">노션<br>(Notion)</h5>
+                                            </div>
+                                        </div>
+                                        <!-- Product actions-->
+                                        <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                                            <div class="text-center">
+                                                <!-- Button trigger modal -->
+                                                <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#exampleModal_18">
+                                                    비밀번호 등록 하기
+                                                </button>
+                                                
+                                                <!-- Modal -->
+                                                <div class="modal fade" id="exampleModal_18" tabindex="-1" aria-labelledby="exampleModalLabel_18" aria-hidden="true">
+                                                    <div class="modal-dialog modal-dialog-centered">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title" id="exampleModalLabel_18">노션 (Notion)</h5>
+                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                    <span aria-hidden="true">&times;</span>
+                                                                </button>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                <div class="modal-body">
+                                                                    <div class="modal-body">
+                                                                        <div class="modal-body">
+                                                                            <div class="card card-body">
+                                                                                <input type="text" id="exampleModal_13" class="form-control" name="" placeholder="저장할 비밀번호를 입력하세요" style="margin-bottom:10px";> 
+                                                                                <button type="submit" class="btn btn-primary btn btn-secondary btn-lg" size="lg">
+                                                                                등록하기
+                                                                                </button> 
+                                                                            </div>
+                                                                            <div class="card card-body">
+                                                                                    <input type="text" id="" class="form-control" name=""  style="margin-bottom:10px";> 
+                                                                                    <button type="submit" class="btn btn-primary btn btn-secondary btn-lg" size="lg">
+                                                                                    생성하기
+                                                                                    </button>
+                                                                            </div>    
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-primary">Save</button>
+                                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col mb-5">
+                                    <div class="card h-60">
+                                        <!-- Product image-->
+                                        {% load static %}
+                                        <img class="card-img-top" src= "{% static '../static/images/brunch.png' %}" alt="..." />
+                                        <!-- Product details-->
+                                        <div class="card-body p-4">
+                                            <div class="text-center">
+                                                <!-- Product name-->
+                                                <h5 class="fw-bolder">브런치<br>(Brunch)</h5>
+                                            </div>
+                                        </div>
+                                        <!-- Product actions-->
+                                        <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                                            <div class="text-center">
+                                                <!-- Button trigger modal -->
+                                                <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#exampleModal_19">
+                                                    비밀번호 등록 하기
+                                                </button>
+                                                
+                                                <!-- Modal -->
+                                                <div class="modal fade" id="exampleModal_19" tabindex="-1" aria-labelledby="exampleModalLabel_19" aria-hidden="true">
+                                                    <div class="modal-dialog modal-dialog-centered">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title" id="exampleModalLabel_19">브런치 (Brunch)</h5>
+                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                    <span aria-hidden="true">&times;</span>
+                                                                </button>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                <div class="modal-body">
+                                                                    <div class="modal-body">
+                                                                        <div class="modal-body">
+                                                                            <div class="card card-body">
+                                                                                <input type="text" id="exampleModal_13" class="form-control" name="" placeholder="저장할 비밀번호를 입력하세요" style="margin-bottom:10px";> 
+                                                                                <button type="submit" class="btn btn-primary btn btn-secondary btn-lg" size="lg">
+                                                                                등록하기
+                                                                                </button> 
+                                                                            </div>
+                                                                            <div class="card card-body">
+                                                                                    <input type="text" id="" class="form-control" name=""  style="margin-bottom:10px";> 
+                                                                                    <button type="submit" class="btn btn-primary btn btn-secondary btn-lg" size="lg">
+                                                                                    생성하기
+                                                                                    </button>
+                                                                            </div>    
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-primary">Save</button>
+                                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col mb-5">
+                                    <div class="card h-60">
+                                        <!-- Product image-->
+                                        {% load static %}
+                                        <img class="card-img-top" src= "{% static '../static/images/tistory.png' %}" alt="..." />
+                                        <!-- Product details-->
+                                        <div class="card-body p-4">
+                                            <div class="text-center">
+                                                <!-- Product name-->
+                                                <h5 class="fw-bolder">티스토리<br>(Tistory)</h5>
+                                            </div>
+                                        </div>
+                                        <!-- Product actions-->
+                                        <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                                            <div class="text-center">
+                                                <!-- Button trigger modal -->
+                                                <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#exampleModal_20">
+                                                    비밀번호 등록 하기
+                                                </button>
+                                                
+                                                <!-- Modal -->
+                                                <div class="modal fade" id="exampleModal_20" tabindex="-1" aria-labelledby="exampleModalLabel_20" aria-hidden="true">
+                                                    <div class="modal-dialog modal-dialog-centered">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title" id="exampleModalLabel_20">티스토리 (Tistory)</h5>
+                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                    <span aria-hidden="true">&times;</span>
+                                                                </button>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                <div class="modal-body">
+                                                                    <div class="modal-body">
+                                                                        <div class="modal-body">
+                                                                            <div class="card card-body">
+                                                                                <input type="text" id="exampleModal_13" class="form-control" name="" placeholder="저장할 비밀번호를 입력하세요" style="margin-bottom:10px";> 
+                                                                                <button type="submit" class="btn btn-primary btn btn-secondary btn-lg" size="lg">
+                                                                                등록하기
+                                                                                </button> 
+                                                                            </div>
+                                                                            <div class="card card-body">
+                                                                                    <input type="text" id="" class="form-control" name=""  style="margin-bottom:10px";> 
+                                                                                    <button type="submit" class="btn btn-primary btn btn-secondary btn-lg" size="lg">
+                                                                                    생성하기
+                                                                                    </button>
+                                                                            </div>    
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-primary">Save</button>
+                                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col mb-5">
+                                    <div class="card h-60">
+                                        <!-- Product image-->
+                                        {% load static %}
+                                        <img class="card-img-top" src= "{% static '../static/images/word.png' %}" alt="..." />
+                                        <!-- Product details-->
+                                        <div class="card-body p-4">
+                                            <div class="text-center">
+                                                <!-- Product name-->
+                                                <h5 class="fw-bolder">워드프레스<br>(Wordpress)</h5>
+                                            </div>
+                                        </div>
+                                        <!-- Product actions-->
+                                        <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                                            <div class="text-center">
+                                                <!-- Button trigger modal -->
+                                                <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#exampleModal_21">
+                                                    비밀번호 등록 하기
+                                                </button>
+                                                
+                                                <!-- Modal -->
+                                                <div class="modal fade" id="exampleModal_21" tabindex="-1" aria-labelledby="exampleModalLabel_21" aria-hidden="true">
+                                                    <div class="modal-dialog modal-dialog-centered">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title" id="exampleModalLabel_21">워드프레스 (WordPress)</h5>
+                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                    <span aria-hidden="true">&times;</span>
+                                                                </button>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                <div class="modal-body">
+                                                                    <div class="modal-body">
+                                                                        <div class="modal-body">
+                                                                            <div class="card card-body">
+                                                                                <input type="text" id="exampleModal_13" class="form-control" name="" placeholder="저장할 비밀번호를 입력하세요" style="margin-bottom:10px";> 
+                                                                                <button type="submit" class="btn btn-primary btn btn-secondary btn-lg" size="lg">
+                                                                                등록하기
+                                                                                </button> 
+                                                                            </div>
+                                                                            <div class="card card-body">
+                                                                                    <input type="text" id="" class="form-control" name=""  style="margin-bottom:10px";> 
+                                                                                    <button type="submit" class="btn btn-primary btn btn-secondary btn-lg" size="lg">
+                                                                                    생성하기
+                                                                                    </button>
+                                                                            </div>    
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-primary">Save</button>
+                                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col mb-5">
+                                    <div class="card h-60">
+                                        <!-- Product image-->
+                                        {% load static %}
+                                        <img class="card-img-top" src= "{% static '../static/images/velog.png' %}" alt="..." />
+                                        <!-- Product details-->
+                                        <div class="card-body p-4">
+                                            <div class="text-center">
+                                                <!-- Product name-->
+                                                <h5 class="fw-bolder">벨로그<br>(Velog)</h5>
+                                            </div>
+                                        </div>
+                                        <!-- Product actions-->
+                                        <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                                            <div class="text-center">
+                                                <!-- Button trigger modal -->
+                                                <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#exampleModal_22">
+                                                    비밀번호 등록 하기
+                                                </button>
+                                                
+                                                <!-- Modal -->
+                                                <div class="modal fade" id="exampleModal_22" tabindex="-1" aria-labelledby="exampleModalLabel_22" aria-hidden="true">
+                                                    <div class="modal-dialog modal-dialog-centered">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title" id="exampleModalLabel_@2">벨로그 (Velog)</h5>
+                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                    <span aria-hidden="true">&times;</span>
+                                                                </button>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                <div class="modal-body">
+                                                                    <div class="modal-body">
+                                                                        <div class="modal-body">
+                                                                            <div class="card card-body">
+                                                                                <input type="text" id="exampleModal_13" class="form-control" name="" placeholder="저장할 비밀번호를 입력하세요" style="margin-bottom:10px";> 
+                                                                                <button type="submit" class="btn btn-primary btn btn-secondary btn-lg" size="lg">
+                                                                                등록하기
+                                                                                </button> 
+                                                                            </div>
+                                                                            <div class="card card-body">
+                                                                                    <input type="text" id="" class="form-control" name=""  style="margin-bottom:10px";> 
+                                                                                    <button type="submit" class="btn btn-primary btn btn-secondary btn-lg" size="lg">
+                                                                                    생성하기
+                                                                                    </button>
+                                                                            </div>    
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-primary">Save</button>
+                                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col mb-5">
+                                    <div class="card h-60">
+                                        <!-- Product image-->
+                                        {% load static %}
+                                        <img class="card-img-top" src= "{% static '../static/images/blogger.png' %}" alt="..." />
+                                        <!-- Product details-->
+                                        <div class="card-body p-4">
+                                            <div class="text-center">
+                                                <!-- Product name-->
+                                                <h5 class="fw-bolder">벨로거<br>(Blogger)</h5>
+                                            </div>
+                                        </div>
+                                        <!-- Product actions-->
+                                        <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                                            <div class="text-center">
+                                                <!-- Button trigger modal -->
+                                                <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#exampleModal_23">
+                                                    비밀번호 등록 하기
+                                                </button>
+                                                
+                                                <!-- Modal -->
+                                                <div class="modal fade" id="exampleModal_23" tabindex="-1" aria-labelledby="exampleModalLabel_23" aria-hidden="true">
+                                                    <div class="modal-dialog modal-dialog-centered">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title" id="exampleModalLabel_23">벨로거 (Blogger)</h5>
+                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                    <span aria-hidden="true">&times;</span>
+                                                                </button>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                <div class="modal-body">
+                                                                    <div class="modal-body">
+                                                                        <div class="modal-body">
+                                                                            <div class="card card-body">
+                                                                                <input type="text" id="exampleModal_13" class="form-control" name="" placeholder="저장할 비밀번호를 입력하세요" style="margin-bottom:10px";> 
+                                                                                <button type="submit" class="btn btn-primary btn btn-secondary btn-lg" size="lg">
+                                                                                등록하기
+                                                                                </button> 
+                                                                            </div>
+                                                                            <div class="card card-body">
+                                                                                    <input type="text" id="" class="form-control" name=""  style="margin-bottom:10px";> 
+                                                                                    <button type="submit" class="btn btn-primary btn btn-secondary btn-lg" size="lg">
+                                                                                    생성하기
+                                                                                    </button>
+                                                                            </div>    
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-primary">Save</button>
+                                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col mb-5">
+                                    <div class="card h-60">
+                                        <!-- Product image-->
+                                        {% load static %}
+                                        <img class="card-img-top" src= "{% static '../static/images/medium.png' %}" alt="..." />
+                                        <!-- Product details-->
+                                        <div class="card-body p-4">
+                                            <div class="text-center">
+                                                <!-- Product name-->
+                                                <h5 class="fw-bolder">미디움<br>(Medium)</h5>
+                                            </div>
+                                        </div>
+                                        <!-- Product actions-->
+                                        <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                                            <div class="text-center">
+                                                <!-- Button trigger modal -->
+                                                <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#exampleModal_24">
+                                                    비밀번호 등록 하기
+                                                </button>
+                                                
+                                                <!-- Modal -->
+                                                <div class="modal fade" id="exampleModal_24" tabindex="-1" aria-labelledby="exampleModalLabel_24" aria-hidden="true">
+                                                    <div class="modal-dialog modal-dialog-centered">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title" id="exampleModalLabel_24">미디움 (Medium)</h5>
+                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                    <span aria-hidden="true">&times;</span>
+                                                                </button>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                <div class="modal-body">
+                                                                    <div class="modal-body">
+                                                                        <div class="modal-body">
+                                                                            <div class="card card-body">
+                                                                                <input type="text" id="exampleModal_13" class="form-control" name="" placeholder="저장할 비밀번호를 입력하세요" style="margin-bottom:10px";> 
+                                                                                <button type="submit" class="btn btn-primary btn btn-secondary btn-lg" size="lg">
+                                                                                등록하기
+                                                                                </button> 
+                                                                            </div>
+                                                                            <div class="card card-body">
+                                                                                    <input type="text" id="" class="form-control" name=""  style="margin-bottom:10px";> 
+                                                                                    <button type="submit" class="btn btn-primary btn btn-secondary btn-lg" size="lg">
+                                                                                    생성하기
+                                                                                    </button>
+                                                                            </div>    
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-primary">Save</button>
+                                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+                
+            </p>
+            <h4 id="CONTACT" style="color:#FAFAFA;">CONTACT</h4>
+            <p>
+                <div class="bg-dark py-5">
+                    <div class="container px-4 px-lg-5 my-5">
+                        <div class="text-center text-white">
+                            <h1 class="display-4 fw-bolder">폴리매스 : 한계를 거부하는 다재 다능한 사람</h1>
+                            <p class="lead fw-normal text-white-50 mb-0">폴리매스는 훈키도키를 사용합니다</p>
+                        </div>
+                    </div>
+                </div>
+                    <div class="container">
+                        <!-- Contact Section Heading-->
+                        <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">Contact Me</h2>
+                        <!-- Icon Divider-->
+                        <div class="divider-custom">
+                            <div class="divider-custom-line"></div>
+                            <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+                            <div class="divider-custom-line"></div>
+                        </div>                        
+                <div class="row">
+                    <div class="col-lg-8 mx-auto">
+                        <!-- To configure the contact form email address, go to mail/contact_me.php and update the email address in the PHP file on line 19.-->
+                        <form id="contactForm" name="sentMessage" novalidate="novalidate">
+                            <div class="control-group">
+                                <div class="form-group floating-label-form-group controls mb-0 pb-2">
+                                    <label>이름</label>
+                                    <input class="form-control" id="name" type="text" placeholder="이름" required="required" data-validation-required-message="이름을 입력하세요." />
+                                    <p class="help-block text-danger"></p>
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <div class="form-group floating-label-form-group controls mb-0 pb-2">
+                                    <label>이메일</label>
+                                    <input class="form-control" id="email" type="email" placeholder="이메일" required="required" data-validation-required-message="이메일을 입력하세요.." />
+                                    <p class="help-block text-danger"></p>
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <div class="form-group floating-label-form-group controls mb-0 pb-2">
+                                    <label>연락처</label>
+                                    <input class="form-control" id="phone" type="tel" placeholder="연락처" required="required" data-validation-required-message="연락처를 입력하세요." />
+                                    <p class="help-block text-danger"></p>
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <div class="form-group floating-label-form-group controls mb-0 pb-2">
+                                    <label>내용</label>
+                                    <textarea class="form-control" id="message" rows="5" placeholder="내용" required="required" data-validation-required-message="내용을 입력하세요."></textarea>
+                                    <p class="help-block text-danger"></p>
+                                </div>
+                            </div>
+                            <br />
+                            <div id="success"></div>
+                            <div class="form-group"><button class="btn btn-dark btn-xl" id="sendMessageButton" type="submit">전송</button></div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            </p>
+        </div>
+
+
+        <!-- Footer-->
+        <footer class="py-5 bg-dark">
+            <div class="container"><p class="m-0 text-center text-white">Copyright &copy; SangHoon 2021</p></div>
+        </footer>
+
+        <!-- Bootstrap core JS-->
+        {% load static %}
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Core theme JS-->
+        <script src="{% static '../static/js/scripts.js' %}"></script>
+
+
+        <script>
+            function applyPassword() {
+                        $.post(
+                            "password_save",
+                            {userPassword:$("#userPassword").val(),
+                            csrfmiddlewaretoken : document.getElementsByName("csrfmiddlewaretoken")[0].value}
+                        )
+                    }
+
+
+        //     function showRandomPassword() {
+        //         $.post(
+        //                     "password_init",
+        //                     {randomPassword:$("#randomPassword").val(),
+        //                     csrfmiddlewaretoken : document.getElementsByName("csrfmiddlewaretoken")[0].value},
+                            
+        //                     function(hello){
+        //                         $("#showGoogle").html( hello );
+        //                     }
+        //                 )
+        //             }
+        </script>
+    </body>
+</html>

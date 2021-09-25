@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>회원가입 실패</title>	
+    </head>
+    <body>
+        {% csrf_token %}
+        <h1>이미 있는 회원입니다!</h1>
+
+        <a href="http://49.50.160.72:8000/dontgiveup/register">다시 회원가입하기</a>>
+    </body>	
+
+    <script>
+    alert("회원가입 실패");
+    </script>
+</html>  

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
+        <title>MyPage</title>	
+    </head>
+    <body>
+        {% csrf_token %}
+        <h1 style="margin-left:150px;">안녕하세요, {{ human_name }} 님! </h1>
+        <h1>저희 웹페이지에 방문 해주셔서 감사합니다.</h1>
+        
+    <div class="container">
+        <div class="row row-cols-auto">
+            <div class="col">
+                <button type="submit" class="btn btn-primary btn btn-secondary btn-lg" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                        비밀번호 변경
+                </button>
+            </div>
+            <div class="col">
+                <form action="delete_test" method="post" >
+                    {% csrf_token %}
+                    <p>
+                        <button type="submit" class="btn btn-primary btn btn-secondary btn-lg" size="lg">
+                            회원탈퇴
+                        </button> 
+                    </p>
+                </form>
+            </div>
+            <div class="col">
+                <form action="logout_test" method="post" >
+                    {% csrf_token %}
+                    <p>
+                        <button type="submit" class="btn btn-primary btn btn-secondary btn-lg" size="lg">
+                            로그아웃
+                        </button> 
+                    </p>
+                </form>
+            </div>
+            <div class="col">  
+            </div>
+        </div>
+    </div>
+
+        <form action="update_test" method="post" >
+            {% csrf_token %}
+            <div class="collapse" id="collapseExample">
+                <div class="card card-body" style="width:300px; margin-left:140px">
+                    <input type="text" id="updateData" class="form-control" name="editPassword_test" placeholder="변경할 비밀번호" style="margin-bottom:10px";> 
+                    <button type="submit" class="btn btn-primary btn btn-secondary btn-lg" size="lg">
+                    변경
+                    </button> 
+                </div>
+            </div>
+        </form>
+
+    </body>	
+</html>  

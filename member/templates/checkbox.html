@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>checkbox</title>	
+    </head>
+    <body>
+    취미를 선택하세요
+    <form action="checkbox_result"  method="post">
+        {% csrf_token %}
+        <input type="checkbox" name="my_id[]" value="농구">농구</input>
+        <input type="checkbox" name="my_id[]" value="배구">배구</input>
+        <input type="checkbox" name="my_id[]" value="축구">축구</input>
+
+    <button type="submit">저장</button>
+    </body>	
+</html>  
