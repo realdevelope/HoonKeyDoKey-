@@ -5,7 +5,9 @@ from .forms import UploadFileForm
 #from django.contrib import messages
 from .models import Human
 from .models import PasswordStorage
-import random
+from django.http import JsonResponse
+from django.core.mail import send_mail
+import json
 
 ###################################################################################################
 #체크박스 실습 예제
@@ -47,64 +49,72 @@ def ajax( req ) :
 
 ###################################################################################################
 # 새로 제작 (두번째)
-def register_test( req ):
+def register_test( req ):   # 회원가입 페이지
     return render( req, 'register_test.html')
 
-def registered_test ( req ):
+def registered_test ( req ):    # 회원가입 완료 페이지
     registered_test_member = Human(human_id = req.POST.get('human_id'),
                             human_name = req.POST.get('human_name'),
                             human_password = req.POST.get('human_password'))
     
-    # rt_member = User.objects.filter ( userid = req.POST.get('human_id'))
-    # print("있다없다")
-    # print(rt_member)
+    is_Human = Human.objects.filter ( userid = req.POST.get('human_id'))
 
-    # if rt_member :
-    #     return render(req, "registerFail_test.html")
+    if is_Human :   # 아이디 중복시 회원가입 실패로 처리
+        return render(req, "registerFail.html")
 
-    registered_test_member.save()    
-    print("저장됨?")
+    registered_test_member.save()
 
     return render (req, 'registered_test.html', {'human_id': req.POST.get('human_id'),
                                                 'human_name': req.POST.get('human_name'),
-                                                'human_password': req.POST.get('human_password')}
-                )
+                                                'human_password': req.POST.get('human_password')})
 
-def logined_test( req ):
+def logined_test( req ):    # 메인페이지
     logged_human = Human.objects.filter ( human_id = req.POST.get('human_id'),
                                         human_password = req.POST.get('human_password') )
+    print("logged_human")
+    print(logged_human)
     if logged_human:
-        global is_human
-        is_human = Human.objects.get(human_id = logged_human[0].human_id)
-
         req.session['human_id'] = logged_human[0].human_id
 
-        if not req.session.get('human_id'):     
-            return render( req, 'nosession_test.html')
-        
+        if req.session.get('human_id'):
+            return render( req, 'main_test.html', {'human_id': req.POST.get('human_id'),
+                                                'human_name': logged_human[0].human_name})
         else:
-            return render( req, 'main_test.html')
+            return render( req, 'nosession_test.html')
 
     return render(req, 'loginfail_test.html')
 
-def my_page_test ( req ) :    
-    if req.session.get('human_id'):     
-            return render( req, 'myPage.html', {'human_name' : is_human.human_name})
-    else :
-            return render( req, 'nosession_test.html')
+def my_page_test ( req ) :    # 마이페이지
+    if req.session.get('human_id'):
+        global getHuman
+        getHuman = Human.objects.get(human_id = req.session.get('human_id'))
+        return render( req, 'myPage.html', {'human_id' : getHuman.human_id, 
+                                            'human_name' : getHuman.human_name, 
+                                            'human_password' : getHuman.human_password})
+    else:
+        return render( req, 'nosession_test.html')
 
-def login_test ( req ):    
+def login_test ( req ):     # 로그인 페이지
     return render( req, 'login_test.html' )
 
-def update_test ( req ):
-    human = is_human
+def update_test ( req ):    #
+    human = getHuman
+    if not req.POST.get('editPassword_test'):  # password 공백일 때 유저정보가 변경되지 않고 메인페이지로 이동
+        print("password 공백이므로 유저정보가 변경되지 않고 메인페이지로 이동")
+        return render( req, 'main_test.html')
+
+    if not req.POST.get('editHumanName_test'):   # humanName 공백일 때 유저정보가 변경되지 않고 메인페이지로 이동
+        print("humanName 공백이므로 유저정보가 변경되지 않고 메인페이지로 이동")
+        return render( req, 'main_test.html')
+
+    human.human_name = req.POST.get('editHumanName_test')
     human.human_password = req.POST.get('editPassword_test')
     human.save()
 
     return render( req, 'login_test.html')
 
 def delete_test ( req ):
-    human = is_human
+    human = getHuman
     human.delete()
 
     return render( req, 'register_test.html')
@@ -114,31 +124,72 @@ def logout_test ( req ):
 
     return render(req, 'login_test.html')
 
-def password_save( req ):
-    setPassword = PasswordStorage(human_id = is_human.human_id,
-                            site_name = "google",
-                            site_password = req.POST.get('userPassword'))
+###################################################################################################
+# 메인페이지 유저가 등록한 패스워드를 처리하는 부분
 
-    print(is_human.human_id)
-    print(req.POST.get('userPassword'))
+def password_save( req ):
+    setPassword = PasswordStorage(human_id = req.session['human_id'],
+                                site_name = req.POST.get('siteName'),
+                                site_password = req.POST.get('userPassword'))
+
+    print(setPassword.site_password)
+    if setPassword == None or setPassword.site_password == None:
+        return render(req, 'main_test.html')
 
     setPassword.save()
-    return render(req, "main_test.html")
+    return render(req, 'main_test.html')
 
-    # alphabet = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789~!@#$%^&*"
-    # password = ""
-    
-    # for i in range(8):
-    #     index = random.randrange(len(alphabet))
-    #     password = password + alphabet[index]
-    # if any(a.isdigit() for a in password) == True:
-    #     return password
+def password_show( req ):
+    thatPassword = PasswordStorage.objects.filter( human_id = req.session.get('human_id'),
+                                                    site_name = req.POST.get('siteName'))
 
-    # elif any(a.isdigit() for a in password) == False:
-    #     return password_init()
+    return JsonResponse({'showPassword' : thatPassword[0].site_password}, status=200)
+
+def password_get( req ):
+    thatUser = PasswordStorage.objects.filter ( human_id = req.session.get('human_id'),
+                                                site_name = req.POST.get('siteName'))
+    isIt = 0
+    if not thatUser:
+        isIt = 0
+        print("해당 사이트에 유저가 등록한 비밀번호가 없습니다.")
+        return JsonResponse({'isIt': isIt}, status=200)
+    else:
+        isIt = 1
+        print("유저가 패스워드를 등록한 사이트를 불러옵니다.")
+        return JsonResponse({'isIt': isIt}, status=200)
+
+
+def password_edit( req ):
+    print("password_edit")
+    userFilter = PasswordStorage.objects.filter ( human_id = req.session.get('human_id'),
+                                                site_name = req.POST.get('siteName'))
+
+    changePassword = req.POST.get('changePassword')
+
+    getUserPassword = PasswordStorage.objects.get(human_id = req.session.get('human_id'),
+                                                site_name = req.POST.get('siteName'))
     
-    # # print(password_init())
-    # return render(req, 'logined_test.html', {'randomPassword' : password_init()})
+    getUserPassword.site_password = changePassword
+    getUserPassword.save()
+
+    return render( req, 'main_test.html')
+
+def contact( req ):
+    contact_human = Human.objects.filter ( human_id = req.POST.get('human_id'),
+                                        human_name = req.POST.get('human_name'),
+                                        phone = req.POST.get('phone') )
+    
+    content = req.POST.get('content')
+
+    send_mail(
+    'Subject here',
+    phone,
+    human_id,
+    content, 
+    ['adasddasd12@naver.com'],
+    fail_silently=False,)
+
+    return JsonResponse({'isIt': "mailSended"}, status=200)
 
 ###################################################################################################
 #회원가입, 로그인 세션까지 실습예제
@@ -153,9 +204,6 @@ def registered ( req ) :    # 회원가입 완료
 
     is_member = User.objects.filter ( userid = req.POST.get('userid'))
 
-    print("잇다없다")
-    print(is_member)
-
     if is_member :
         return render(req, "registerFail.html")
 
@@ -165,8 +213,7 @@ def registered ( req ) :    # 회원가입 완료
 
     return render ( req, 'registered.html', {'userid': req.POST.get('userid'), 
                                             'username': req.POST.get('username'), 
-                                            'password': req.POST.get('password')}
-                )
+                                            'password': req.POST.get('password')} )
 
 def login ( req ) :     # 로그인
     return render( req, 'login.html' )
@@ -194,7 +241,7 @@ def goShop(req) :   # 쇼핑몰 페이지(main.html)
     
 def logged ( req ) :    # 마이페이지
     if req.session.get('userid'):      # 세션을 못받아왔으때 이동하는 페이지
-            return render( req, 'logged.html', {'username' : isLogged.username})
+            return render( req, 'logged.html', {'username' : isLogged.username} )
     else :
             return render( req, 'nosession.html')
 
