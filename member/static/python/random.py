@@ -5,6 +5,7 @@ def password_init( req ):
     for i in range(8):
         index = random.randrange(len(alphabet))
         password = password + alphabet[index]
+    
     if any(a.isdigit() for a in password) == True:
         return password
 
