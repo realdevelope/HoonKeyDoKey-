@@ -11273,3 +11273,7 @@ textarea.form-control-lg {
     display: none !important;
   }
 }
+
+.mouse:hover {
+    border:  3px solid #A4A4A4;
+}
