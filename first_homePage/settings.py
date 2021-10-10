@@ -128,3 +128,11 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 SUMMERNOTE_CONFIG = {
     'attachment_filesize_limit': 5 * 1024 * 1024
 }
+
+
+EMAIL_HOST = 'smtp.naver.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'kebin0613@naver.com'
+EMAIL_HOST_PASSWORD = 'dPwls9747@'
+EMAIL_USE_TLS = True
+EMAIL_USE_SSL = False
