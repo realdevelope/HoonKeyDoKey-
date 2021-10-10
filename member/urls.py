@@ -11,7 +11,11 @@ urlpatterns = [
         path("logout_test", views.logout_test),
         path("my_page_test", views.my_page_test),
         path("password_save", views.password_save),
-
+        path("password_get", views.password_get),
+        path("password_show", views.password_show),
+        path("password_edit", views.password_edit),
+        path("password_delete", views.password_delete),
+        path("contact", views.contact),
 
         path("upload", views.upload_file),
         path("checkbox", views.checkbox),
